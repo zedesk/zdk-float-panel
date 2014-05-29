@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>floating window component</title>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        
+        <script src="/bower_components/platform/platform.js"></script>
+        <link rel="import" href="zdk-float-panel.html">
+    </head>
+    <body>
+        <style>
+        body { font-family: Verdana; font-size: 15px; }
+        zdk-float-panel {
+            width: 300px;
+            height: 400px;
+            border: 1px solid #999;
+            box-shadow: 5px 2px 10px #999;
+            background: white;
+        }
+        </style>
+        <zdk-float-panel id="panel1" title="Window 1" x="140" y="200" >
+            <p>test d'ouverture d'une fenetre</p>
+            <button>test</button>
+            <ul>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+            </ul>
+        </zdk-float-panel>
+        <zdk-float-panel id="panel2" title="Window 2"></zdk-float-panel>
+        <script>
+        function modifPanel(panel) {
+            panel.activate();
+            panel.x = 300;
+            panel.y = 400;
+            panel.title = "New title";
+        }
+        var panel = document.getElementById("panel1");
+        setTimeout(function() { modifPanel(panel); } , 5000);
+        </script>
+    </body>
+</html>

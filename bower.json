@@ -1,0 +1,28 @@
+{
+  "name": "zdk-float-panel",
+  "version": "0.0.1",
+  "authors": [
+    "Fabrice <fabrice.lecoz@zedesk.net>"
+  ],
+  "description": "A float panel component for polymer",
+  "main": "zdk-flat-panel.html",
+  "keywords": [
+    "panel",
+    "float",
+    "component",
+    "web-component",
+    "polymer",
+    "web-components"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/zedesk/zdk-float-panel",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}

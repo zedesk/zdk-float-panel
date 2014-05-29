@@ -1,0 +1,98 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<polymer-element name="zdk-float-panel" attributes="x, y, title">
+    <template>
+        <style>
+            :host { display: block; overflow:auto; position:absolute }
+            div.win {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                top: 0;
+            }
+            div#win {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+            div.content {
+                flex: 1;
+                overflow: auto;
+            }
+            header {
+                height: 30px;
+                color: white;
+                padding-left: 10px;
+                background: dimgrey;
+                line-height:30px;
+            }
+        </style>
+		<div id="win">
+            <header on-dragstart="startDrag">{{title}}</header>
+            <div class="content">
+            <content></content>
+            </div>
+            <footer></footer>
+        </div>
+	</template>
+    <script>
+        (function() {
+            "use strict";
+            var isTouch = ('ontouchstart' in window);
+            var START_EVENT = isTouch ? 'touchstart' : 'mousedown';
+            var MOVE_EVENT = isTouch ? 'touchmove' : 'mousemove';
+            var END_EVENT = isTouch ? 'touchend' : 'mouseup';
+            
+            var handlerMove, handlerStop;
+            Polymer('zdk-float-panel', {
+                ready: function() {
+                    var that = this;
+                    this.$.win.addEventListener(START_EVENT, function(evt) { that.activate(evt); },false);
+                    this.$.win.querySelector("header").addEventListener(START_EVENT, function(evt) { that.startDrag(evt) },false);
+                },
+                activate: function(evt) {
+                    document.body.appendChild(this);
+                },
+                startDrag: function(evt) {
+                    var that = this;
+                    handlerMove = function(evt) { that.move(evt); }
+                    document.addEventListener(MOVE_EVENT, handlerMove ,false);
+                    handlerStop = function(evt) { that.stopDrag(evt); }
+                    document.addEventListener(END_EVENT, handlerStop ,false);
+                    this.mouse = { offsetx : evt.clientX, offsety: evt.clientY };
+                },
+                move: function(evt) {
+                    evt.preventDefault();
+                    var that = this;
+                    var touchStartX = isTouch ? evt.changedTouches[0].clientX : evt.clientX;
+                    var touchStartY = isTouch ? evt.changedTouches[0].clientY : evt.clientY;
+                    this.style.left = (touchStartX - this.mouse.offsetx + this.offsetLeft)+"px";
+                    this.style.top = (touchStartY - this.mouse.offsety + this.offsetTop)+"px";
+                    this.mouse.offsetx = touchStartX;
+                    this.mouse.offsety = touchStartY;
+                },
+                stopDrag: function(evt) {
+                    var that = this;
+                    document.removeEventListener(MOVE_EVENT, handlerMove,false);
+                    document.removeEventListener(END_EVENT, handlerStop ,false);
+                    this.x = this.offsetLeft;
+                    this.y = this.offsetTop;
+                    this.setAttribute("x",this.x);
+                    this.setAttribute("y",this.y);
+                },
+                xChanged: function(oldValue, newValue) {
+                    if(newValue === oldValue) return;
+                    this.x = parseInt(newValue,10);
+                    this.style.left = newValue +"px";
+                    this.setAttribute("x",this.x);
+                },
+                yChanged: function(oldValue, newValue) {
+                    if(newValue === oldValue) return;
+                    this.y = parseInt(newValue,10);
+                    this.style.top = newValue +"px";
+                    this.setAttribute("y",this.y);
+                }
+            });
+        })();
+    </script>
+</polymer-element>
