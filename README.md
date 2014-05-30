@@ -19,7 +19,7 @@ in the head of your html file :
 Then in the body of your html page :
 
 ```
-<zdk-float-panel title="<title>" x="20" y="20">
+<zdk-float-panel heading="<heading>" x="20" y="20">
     <!-- insert your content here -->
 </zdk-float-panel>
 ```
@@ -28,7 +28,7 @@ Then in the body of your html page :
 
 The zdk-float-panel component could have the following attributes :
 
-  - __title__ : the title of the panel
+  - __heading__ : the title of the panel
   - __x__ : the x coordinate of the panel
   - __y__ : the y coordiante of the panel
   
@@ -40,7 +40,7 @@ These attributes are accessible programmatically :
 var panel = document.querySelector("zdk-float-panel");
 panel.activate();
 panel.x = 300; panel.y = 400;
-panel.title = "New title";
+panel.heading = "New title";
 ```
 
 ## Methods
@@ -50,3 +50,10 @@ the __activate__ method allow to display the selected panel on top of all elemen
 ## Compatibility
 
 This component works on desktep browser, but also on mobile devices, like android tablets ( tested on my nexus7 with chrome ).
+
+| Browser           | status    |
+|:------------------|:---------:|
+| Chrome            | OK        |
+| Firefox           | OK        |
+| Android (Chrome)  | OK        |
+| IOS ( Simulator ) | OK        |

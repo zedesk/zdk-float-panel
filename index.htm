@@ -13,7 +13,7 @@
     </head>
     <body>
         <style>
-        body { font-family: Verdana; font-size: 15px; }
+        body { font-family: Verdana; font-size: 15px; background:LightSteelBlue ;}
         zdk-float-panel {
             width: 300px;
             height: 400px;
@@ -22,7 +22,7 @@
             background: white;
         }
         </style>
-        <zdk-float-panel id="panel1" title="Window 1" x="140" y="200" >
+        <zdk-float-panel id="panel1" heading="Window 1" x="140" y="200" >
             <p>test d'ouverture d'une fenetre</p>
             <button>test</button>
             <ul>
@@ -51,7 +51,7 @@
                 <li>item</li>
             </ul>
         </zdk-float-panel>
-        <zdk-float-panel id="panel2" title="Window 2"></zdk-float-panel>
+        <zdk-float-panel id="panel2" heading="Window 2"></zdk-float-panel>
         <script>
         function modifPanel(panel) {
             panel.activate();
